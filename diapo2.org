@@ -1,0 +1,560 @@
+#+TITLE: Blockchain
+#+AUTHOR: Malik Koné
+#+DATE: mercredi 28 juillet 2021
+#+EXPORT_AUTHOR: Docteur Malik Koné
+#+EXPORT_FILE_NAME: diapo2_uvci
+#+LANGUAGE: fr
+#+EXPORT_LANGUAGE: fr
+#+SUBTITLE: Bitcoin et Crypto-monnaies, au-delà du buzz
+#+TOC: headlines [currentsection]
+#+OPTIONS: H:2 toc:t num:t broken-links:t ^:{} date:t author:t title:nil
+#+BEAMER_THEME: Montpellier
+#+LATEX_CLASS: mlk-diapo
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col)
+
+# faire une référence a ESATIC
+#+BEGIN_SRC latex  -i
+{
+  \usebackgroundtemplate{\includegraphics[height=\paperheight]{./page_de_garde_uvci}}
+  \frame[plain]{
+  }
+}
+#+END_SRC
+* Introduction
+** Les concepts de base
+#+ATTR_LaTeX: :width \textwidth
+[[file:Images/cryptographics/anatomy-of-a-chain-1.png]]
+
+*** Blockchain
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+- <1>Enregistrements décentralisés
+  # - Protected
+  # - Public
+- <1>Algorithmes de consensus
+  # - POS: Proof of Stake
+  # - POW: Proof of Work
+- <1>Cryptographie
+- <1>Applications distribuées (dApp)
+*** Token-économie 
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+- <2> Tokens ou jetons
+  # - jeton utilitaire
+  # - jeton de protocole
+  # - NFT (non fungible tokens)
+  # - asset-backed tokens (stable coins)
+- <2> Marchés financiers
+  # - ~1 billion (crypto) / 7 billion (or) / 300 billions (in all)
+- <2-> Portefeuilles éléctroniques ([[https://yoroi-wallet.com][Yoroi-wallet]])
+
+* Bitcoin : Blockchain de 1\iere{} génération
+** La blockchain du Bitcoin 
+   #+BEGIN_VERSE
+Toute action engendre une réaction (3\ieme{} loi de Newton)
+   #+END_VERSE
+** La Naissance du Bitcoin
+*** From: Satoshi Nakamoto satoshi@vistomail.com
+:PROPERTIES:
+:BEAMER_COL: 0.70
+:BEAMER_ENV: block
+:END:
+
+  #+BEGIN_verbatiminput
+  SSubject: Bitcoin P2P e-cashe paper\\
+  Newsgroups: gmane.comp.encryption.general\\
+  Date: Friday 31st October 2008 18:10:00 UTC\\
+   \\
+  I've been working on a new electronic cash system that's fully peer-to-peer, with no trusted third party.
+  #+END_verbatiminput
+*** Cyber-Anarchisme
+:PROPERTIES:
+:BEAMER_COL: 0.30
+:BEAMER_ENV: block
+:END:
+
+#+ATTR_latex: :width .7\linewidth
+[[file:Images/assange.jpg]]
+
+** Quel problème résoud la 1\iere{} blockchain ?
+
+# #+CAPTION: [fig:label] Différences entre Internet et la blockchain
+
+*** Connecter, échanger, librement
+@@latex:\only<1>{@@
+#+ATTR_LATEX: :width .7\textwidth 
+[[./Images/layers.png]] 
+@@latex:}@@
+
+@@latex:\only<2>{@@
+#+ATTR_LATEX: :width .7\textwidth 
+[[./Images/layers_ssl.png]]
+@@latex:}@@
+
+@@latex:\only<3>{@@
+#+ATTR_LATEX: :width .7\textwidth 
+ [[./Images/layers_btc.png]] 
+@@latex:}@@
+
+
+** Les obstacles
+@@latex:\only<1->{@@
+*** La double dépense
+@@latex:}@@
+@@latex:\only<1>{@@
+#+ATTR_LATEX: :width .8\linewidth
+[[file:Images/double_depense.png]]
+@@latex:}@@
+@@latex:\only<2->{@@
+*** L'attaque de Sybil
+#+ATTR_LaTeX: :width \linewidth
+[[file:Images/sybillschema.png]]
+@@latex:}@@
+# @@latex:\only<3->{@@
+# *** L'attaque de Goldfinger (ou attaque des 51%)
+# @@latex:}@@
+
+
+** Comment le problème est résolu ?
+#+ATTR_LaTeX: :width \textwidth
+[[file:Images/cryptographics/anatomy-of-a-chain-1.png]]
+
+*** avec une blokchain
+    @@latex:\only<1>{@@
+Un journal comptable d'enregistrements,
+ -  organisés en blocks infalsifiables
+ -  qui s'enchainent les uns aux autres,
+ -  de façon unique,
+ -  dans un réseau publique et décentralisé.
+@@latex:}@@
+@@latex:\only<2->{@@
+*** et des rôles (Chaum 92)
+# :PROPERTIES:
+# :BEAMER_COL: 0.7
+# :BEAMER_ENV: block
+# :END:
+# :PROPERTIES:
+# :BEAMER_COL: 0.28
+# :BEAMER_ENV: block
+# :END:
+# #+ATTR_LaTeX: :width .6\textwidth
+# [[file:Images/logos/bitcoin_logo.png]]
+-  Utilisateurs 
+# observer consult
+- Acteurs (mineur)
+# assemble les blocs
+-  Décideurs 
+# décide quel sont les blocs valides
+- Empereurs  ([[https://github.com/bitcoin/bitcoin][MIT bitcoin-core developpeurs]] et d'autres...)
+# Décide des politiques de validations des blocs
+@@latex:}@@
+
+** Comment le problème est-il résolu ?
+*** [[https://www.blockchain.com/btc/block/0][Block 0]]
+#+ATTR_LaTeX: :width .7 \textwidth
+[[file:Images/btc_block0.png]]
+**** Le [[https://www.blockchain.com/btc/block/123456][block 123 456]]
+
+** Pour faire une transaction
+#+BEGIN_SRC latex  -i
+ \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=.6\textwidth]{Images/cryptographics/tx}
+    \includegraphics<2>[width=.6\textwidth]{Images/cryptographics/block}
+    \includegraphics<3>[width=\textwidth]{Images/cryptographics/Anatomy-of-a-block2}    
+    \includegraphics<4>[width=\textwidth]{Images/cryptographics/anatomy-of-a-chain-1}
+  \end{figure}
+#+END_SRC
+@@latex:\only<1>{@@
+Tx:  ".00012300 BTC pour Binta, signé Amadou"
+@@latex:}@@
+@@latex:\only<2>{@@
+Les mineurs inclu la tx dans un bloc et cherchent un *bon* /nonce/
+@@latex:}@@
+@@latex:\only<3>{@@
+Le 1\ier{} mineur à trouver un *bon* /nonce/, publie le bloc
+  - il contient une récompense (/coinbase/)
+@@latex:}@@
+@@latex:\only<4>{@@
+Les autres mineurs:
+   - Vérifie le nonce
+   - ajoutent le nouveau block à la chaine
+   - recommencent la course pour valider un nouveau bloc de transactions et obtenir une récompense
+@@latex:}@@
+** La pizza à 10 000 BTC
+#+ATTR_latex: :width .7\linewidth
+[[file:Images/pizza_1millions.jpg]]
+- le 18 mai 2010, [[https://bitcointalk.org/index.php?topic=137.msg1195][laslo sur bitcointalk.org]]
+- Le Bitcoin est devenu une l'unité de compte d'[[https://www.blockchain.com/btc/address/1XPTgDRhN8RFnzniWCddobD9iKZatrvH4][journal comptable ouvert]] infalsifiable
+*** A quand son garba payé en QR code?
+** Limites de la blockchain bitcoin 1/5
+*** Coût énergétique
+#+ATTR_LaTeX: :width \textwidth
+[[file:Images/mining-farm-bitcoin.jpg]]
+
+** Limites de la blockchain bitcoin 2/5
+*** Concentration du [[https://www.blockchain.com/charts/pools][hashrate]] (juin 2021)
+#+ATTR_LaTeX: :width .6\textwidth
+[[file:Images/hashrate_juin21.png]]
+
+** Limites de la blockchain Bitcoin 3/5
+*** Politique: forks
+#+ATTR_LaTeX: :width \textwidth
+[[file:Images/cryptographics/blockchain-hard-fork.png]]
+
+** Limites de la Blockchain bitcoin 4/5
+*** Vitesse de traitement des transactions 
+
+# #+ATTR_latex: :height .8\paperheight
+
+#+ATTR_latex: :width \textwidth
+[[file:Images/cryptographics/the-scaling-issue.png]]
+
+** Limites de la Blockchain bitcoin 5/5
+*** Jeux d'instructions limités
+#+ATTR_LaTeX: :width .9\textwidth
+[[file:Images/automate_simple.jpeg]]
+
+* Etherum : Blockchain de 2\ieme{} génération
+** Blockchain de 2\ieme{} génération : Etherum
+   #+BEGIN_VERSE
+Un système d'exploitation décentralisé
+   #+END_VERSE
+** Distributed applications (smart contracts)
+*** DEFI
+:PROPERTIES:
+:BEAMER_COL: 0.60
+:BEAMER_ENV: block
+:END:
+@@latex:\only<1>{@@
+ - Services financiers décentralisés (DeFI)
+ - Financement participatif
+ - Dépots de garantis (emprunt)
+ - Création de marchés de pairs à pairs
+ - Paiement internationaux
+@@latex:}@@
+@@latex:\only<2>{@@
+ - Logistique
+ - Identité numérique
+ - Monnaie dirigée
+ - Objets connectés
+@@latex:}@@
+*** 
+:PROPERTIES:
+:BEAMER_COL: 0.39
+:BEAMER_ENV: block
+:END:
+@@latex:\only<1>{@@
+#+ATTR_LaTeX: :width .9\textwidth
+[[file:Images/defi_service.jpeg]]
+@@latex:}@@
+@@latex:\only<2>{@@
+#+ATTR_LaTeX: :width .9\textwidth
+[[file:Images/defi_coins.jpeg]]
+@@latex:}@@
+
+** Blockchain de 2\ieme{} génération : Etherum
+@@latex:\only<1>{@@
+#+ATTR_LATEX: :width .8\linewidth 
+[[file:Images/turing_schema.png]]
+@@latex:}@@
+
+   @@latex:\only<2>{@@
+#+ATTR_LATEX: :width .6\linewidth 
+[[file:Images/solidity.png]]
+   @@latex:}@@
+
+   @@latex:\only<3>{@@
+#+ATTR_LATEX: :width .6\linewidth 
+[[file:Images/logos/ethereum_classic_logo.jpg]]
+   @@latex:}@@
+*** 
+- <1-> Machine Turing complet
+- <2-> dApps et smart-contracts (solidity)
+- <3> ETH, ETC et gaz
+
+** Les limites d'Etherum
+*** 
+:PROPERTIES:
+:BEAMER_COL: 0.39
+:BEAMER_ENV: block
+:END:
+  - Pas assez sécurisé
+  - Coûteux
+  - Difficile à améliorer 
+*** 
+:PROPERTIES:
+:BEAMER_COL: 0.60
+:BEAMER_ENV: block
+:END:
+#+ATTR_LATEX: :width .9\linewidth 
+[[file:Images/dao.png]]
+
+
+
+* Cardano : blockchain de 3\ieme{} génération
+** Cardano: blockchain de 3\ieme{} génération
+   #+BEGIN_VERSE
+1, 2, et \cdots{} 3 !
+   #+END_VERSE
+** Originalité du projet
+**** 1\ier{} blockchain scientifique
+     #+ATTR_LaTeX: :width .5\linewidth
+     [[file:Images/logos/cardano_logo.png]]
+
+     #+ATTR_LaTeX: :width \linewidth
+     [[file:Images/cardano/roadmap_small.png]]
+
+
+** Les fondations
+   #+ATTR_LaTeX: :width \linewidth
+   [[file:Images/cardano/roadmap_step1.png]]
+
+*** Ouroboros POS
+    #+BEGIN_SRC latex  -i
+\centering
+\includegraphics[width=.4\textwidth]{Images/logos/ouroboros}
+    #+END_SRC
+
+** La décentralisation
+   #+ATTR_LaTeX: :width \linewidth
+   [[file:Images/cardano/roadmap_step2.png]]
+
+*** Stacking et pools
+   #+BEGIN_SRC latex  -i
+\centering
+\includegraphics[width=.6\textwidth]{Images/cardano/green_pool.jpeg}
+   #+END_SRC
+   
+** Les smart-contract
+   #+ATTR_LaTeX: :width \linewidth
+   [[file:Images/cardano/roadmap_step3.png]]
+
+   #+BEGIN_SRC latex  -i
+\centering
+\includegraphics[width=.6\textwidth]{Images/plutus_haskell.png}
+   #+END_SRC
+   
+** La mise à l'échelle
+   #+ATTR_LaTeX: :width \linewidth
+   [[file:Images/cardano/roadmap_step4.png]]
+
+   #+BEGIN_SRC latex  -i
+\centering
+\includegraphics[width=.5\textwidth]{Images/cardano/daedalus_ada_cardano_w}
+   #+END_SRC
+
+** La gouvernance
+   #+ATTR_LaTeX: :width \linewidth
+   [[file:Images/cardano/roadmap_step5.png]]
+
+*** Vote et Trésor
+   #+BEGIN_SRC latex  -i
+\centering
+\includegraphics[width=.6\textwidth]{Images/cardano/catalyst.jpeg}
+   #+END_SRC
+
+   
+
+
+
+* Token-economie
+** 
+#+BEGIN_VERSE
+Un révolution techno-sociale ?
+#+END_VERSE
+** La monnaie
+*** 
+:PROPERTIES:
+:BEAMER_COL: 0.44
+:BEAMER_ENV: block
+:END:
+**** Qu'est ce que la monnaie ?
+@@latex:\only<1-2>{@@
+- <1>unité de valeur, de change et de compte
+- <2>un jeu d'écriture
+@@latex:}@@
+
+# d'hier à aujourd'hui
+
+**** Une histoire de confiance (Aglietta & Orléan 1998)
+@@latex:\only<3-4>{@@
+- <3>L'obligation (autorité)
+- <3>La confiance (éthique)
+- <4>L'habitude (méthodique)
+@@latex:}@@
+*** 
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:BEAMER_ENV: block
+:END:
+
+@@latex:\only<1>{@@
+#+ATTR_LaTeX: :width .9\textwidth
+[[file:Images/yap_Stone_Money.jpg]]
+@@latex:}@@
+@@latex:\only<2>{@@
+#+ATTR_LaTeX: :width .9\textwidth
+[[file:Images/continental_note.png]]
+@@latex:}@@
+@@latex:\only<3>{@@
+#+ATTR_LaTeX: :width .9\textwidth
+[[file:Images/bceao_meyliet_kone.jpg]]
+@@latex:}@@
+@@latex:\only<4>{@@
+#+ATTR_LaTeX: :width .9\textwidth
+[[file:Images/piece.jpg]]
+@@latex:}@@
+** Les Crypto-monnaies
+#+ATTR_latex: :width .9\linewidth
+[[file:Images/logos/cryptos.jpeg]]
+
+*** Jetons (tokens)
+    :PROPERTIES:
+:BEAMER_COL: 0.43
+:BEAMER_ENV: block
+:END:
+
+ - <1> de protocole
+ - <2> utilitaires ou applicatifs
+   - /stable coins/
+   - non /fongible/ (NFT)
+
+*** Marchés des crypto-monnaies
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:BEAMER_ENV: block
+:END:
+- <3> le marché du crédit: $ 250 billions
+- <3> Le marché des actions: $ 80 billions
+- <3> le marché de l'or: $ 7 billions
+- <3> *le marché des cryptos: $ 1 500 milliards*
+
+
+** Comment avoir des ADA ?
+*** avec des BTC
+:PROPERTIES:
+:BEAMER_COL: 0.45
+:BEAMER_ENV: block
+:END:
+- Acheter des BTC
+- Plateformes d'échange pair à pair ex. [[https://localbitcoins.com/fr/][localbitcoins]] 
+- Maisons de change ([[https://ayael-entreprise.com/][ayael]] au plateau)
+
+*** Directement
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:BEAMER_ENV: block
+:END:
+- Un vendeur, un donnateur physique (ex. moi)
+- Acheter en ligne sur des plateformes reconnues
+  - [[https://www.binance.com/fr][binance]] (CH), [[https://www.kraken.com/][kraken]] (A), [[https://www.coinbase.com/fr/][coinbase]] (USA)
+  - voir [[https://www.coingecko.com/fr][coingecko]] pour classement
+  - avec CB d'une autre zone monétaire que FCFA
+    
+** Comment garder ses ADA  ?
+*** 
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:BEAMER_ENV: block
+:END:
+**** [[https://daedaluswallet.io][Daedalus]] (noeud complet)
+ #+ATTR_LaTeX: :width .2\linewidth
+ [[file:Images/cardano/daedalus.png]]
+
+@@latex:\only<2>{@@
+**** Ouvrir un porte-feuille éléctronique
+   1. Installer yoroi-wallet pour android ou plugin de navigateur
+   2. Noter les mots de sauvegarde
+   2. Partager votre adresse publique
+   3. Recevez des ADA ou lovelace
+@@latex:}@@
+*** [[https://yoroi-wallet.com][Yoroi]] (portefeuille léger)
+:PROPERTIES:
+:BEAMER_COL: 0.43
+:BEAMER_ENV: block
+:END:
+#+ATTR_LaTeX: :width .7\linewidth
+[[file:Images/cardano/o-yoroi.jpg]]
+
+** Délégation et stacking
+- Gagner +5 à 7% d'ADA en minant ::
+- Déléguez :: à *une pool* c'est se regrouper pour valider ensemble des transactions, contre rémunération
+*** 
+**** [[https://www.abobolaispool.com/][Abobolais Pool]]
+     :PROPERTIES:
+     :BEAMER_COL: 0.48
+     :BEAMER_ENV: block
+     :END:
+  #+ATTR_LaTeX: :width .4\linewidth
+  [[file:Images/logos/abobolais_pool.png]]
+    
+**** [[https://cardano.afrikpool.org/][Afrikpool]]
+     :PROPERTIES:
+     :BEAMER_COL: 0.48
+     :BEAMER_ENV: block
+     :END:
+  #+ATTR_LaTeX: :width .2\linewidth
+  [[file:Images/logos/afrikpool.png]]
+*** 
+**** [[https://adapools.org/pool/683e89fa1bcde139504b11fbfd914f8ebe9b8db2678b3da0abdcb2f1][POA]] 
+     :PROPERTIES:
+     :BEAMER_COL: 0.48
+     :BEAMER_ENV: block
+     :END:
+  #+ATTR_LaTeX: :width .4\linewidth
+  [[file:Images/cardano/proof_of_africa.png]]
+
+**** [[https://adapools.org/pool/b62ecc8ce7e46c4443b63b91fffaeb19f869d191a7d2381087aaa768][STKH1]]
+     :PROPERTIES:
+     :BEAMER_COL: 0.48
+     :BEAMER_ENV: block
+     :END:
+  #+ATTR_LaTeX: :width .2\linewidth
+  [[file:Images/cardano/to_moon_stkh.png]]
+
+* Conclusion
+** Conclusion
+*** Cardano
+- [[https://roadmap.cardano.org/en/][Plan de déploiement Cardano]]
+- [[https://explorer.cardano.org/][Explorateur de bloc pour Cardano]]
+- [[Https://github.com/input-output-hk/cardano-node][Cardano-node (github)]]
+**** Délégation
+ - https://adapools.org
+ - formulaire :https://forms.gle/vjaGwDx3oQLrToLo6
+
+*** Evènements Blockchains
+- mars 2022 [[https://blockchainafrica.co/blockchain-africa-conference-johannesburg-2/][Conférence Blockchain en Afrique du Sud]] 
+# *** Références
+# - [Cha92] Chaum, David, "Achieving electronic privacy," Scientific American (August 1992), 96-101.
+
+** C'est l'heure de l'air drop
+
+1. Créer un wallet (suivre les instructions)
+2. Copier l'adresse publique dans le formulaire ci-dessou
+3. https://tinyurl.com/anzy45fk
+4. Transférer à un ami
+5. Déléguer ensemble
+   
+*** Yoroi-wallet
+    :PROPERTIES:
+:BEAMER_COL: 0.40
+:BEAMER_ENV: block
+:END:
+
+#+ATTR_LaTeX: :width .9\textwidth
+[[file:Images/logo-yoroi-wallet.jpg]]
+*** Merci à tous
+:PROPERTIES:
+:BEAMER_COL: 0.4
+:BEAMER_ENV: block
+:END:
+#+ATTR_LaTeX: :width .9\textwidth
+[[file:Images/cardano/daedalus_ada_cardano_w.png]]
+
+# https://docs.google.com/spreadsheets/d/115Si3uBxxiafl6tsB0FtDHNON1t3wULF5D1oAmZ-dOc/edit?resourcekey#gid=1882347834
+

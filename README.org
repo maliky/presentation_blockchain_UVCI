@@ -1,0 +1,6 @@
+* ADA Discovery
+** Presentation pour l'ESATIC
+- export diapo.org with org-beamer-export-as-latex
+- check and correct tex preambule in diapo.tex (notably add to \date[] )
+- compile (latex)
+- view pdf
